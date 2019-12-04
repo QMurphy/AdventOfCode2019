@@ -32,7 +32,7 @@ fn get_module_fuel
             Ok( mass ) => mass,
             Err( _ ) =>
             {
-                println!( "Error parsing mass" );
+                eprintln!( "Error parsing mass" );
                 0
             }
         };

@@ -1,4 +1,5 @@
 mod day1;
+mod day2;
 
 struct DayInfo
 {
@@ -12,7 +13,7 @@ const NUM_DAYS : usize = 25;
 static DAYS: [Option<DayInfo>; NUM_DAYS] =
 [
     Some( DayInfo { part1_func: day1::part1, part2_func: day1::part2, input_file: "input/1.txt" } ),
-    None,
+    Some( DayInfo { part1_func: day2::part1, part2_func: day2::part2, input_file: "input/2.txt" } ),
     None,
     None,
     None,
@@ -57,9 +58,9 @@ fn main() -> Result<(), i32>
         Err( _ ) => 0
     };
 
-    if which_day < 1 || which_day > 25
+    if which_day < 1 || which_day > NUM_DAYS
     {
-        println!( "Invalid day specified" );
+        eprintln!( "Invalid day specified" );
         return Err( -1 );
     }
     
@@ -76,7 +77,7 @@ fn main() -> Result<(), i32>
                 Ok( input_str ) => input_str,
                 Err( _ )   =>
                 {
-                    println!( "Unable to read input file" );
+                    eprintln!( "Unable to read input file" );
                     return Err( -3 );
                 }
             };
@@ -90,7 +91,7 @@ fn main() -> Result<(), i32>
         },
         None =>
         {
-            println!( "Day {} undefined", which_day );
+            eprintln!( "Day {} undefined", which_day );
             return Err( -2 );
         }
     }
