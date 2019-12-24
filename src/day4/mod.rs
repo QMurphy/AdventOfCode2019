@@ -3,16 +3,16 @@ pub fn part1
     input : &str
     ) -> String
 {
-    let minMax : Vec<u32> = String::from( input ).split("-").map( |s| { s.trim().parse().unwrap() } ).collect();
-    let min = minMax[0];
-    let max = minMax[1];
+    let min_max : Vec<u32> = String::from( input ).split("-").map( |s| { s.trim().parse().unwrap() } ).collect();
+    let min = min_max[0];
+    let max = min_max[1];
     let mut total = 0;
 
     for num in min..=max
     {
-        if isSixDigits( num ) &&
-           hasAdjacentSameDigits( num ) &&
-           neverDecreasesDigits( num )
+        if is_six_digits( num ) &&
+           has_adjacent_same_digits( num ) &&
+           never_decreases_digits( num )
         {
             total += 1;
         }
@@ -26,16 +26,16 @@ pub fn part2
     input : &str
     ) -> String
 {
-    let minMax : Vec<u32> = String::from( input ).split("-").map( |s| { s.trim().parse().unwrap() } ).collect();
-    let min = minMax[0];
-    let max = minMax[1];
+    let min_max : Vec<u32> = String::from( input ).split("-").map( |s| { s.trim().parse().unwrap() } ).collect();
+    let min = min_max[0];
+    let max = min_max[1];
     let mut total = 0;
 
     for num in min..=max
     {
-        if isSixDigits( num ) &&
-           hasAdjacentSameDigitsOnlyTwo( num ) &&
-           neverDecreasesDigits( num )
+        if is_six_digits( num ) &&
+           has_adjacent_same_digits_only_two( num ) &&
+           never_decreases_digits( num )
         {
             total += 1;
         }
@@ -44,7 +44,7 @@ pub fn part2
     return total.to_string();
 }
 
-fn isSixDigits
+fn is_six_digits
     (
     num : u32
     ) -> bool
@@ -52,66 +52,66 @@ fn isSixDigits
     return num >= 100_000 && num < 1_000_000;
 }
 
-fn hasAdjacentSameDigits
+fn has_adjacent_same_digits
     (
     mut num : u32
     ) -> bool
 {
-    let mut lastDigit = num % 10;
+    let mut last_digit = num % 10;
     while num != 0
     {
         num /= 10;
-        if num % 10 == lastDigit
+        if num % 10 == last_digit
         {
             return true;
         }
-        lastDigit = num % 10;
+        last_digit = num % 10;
     }
     return false;
 }
 
-fn hasAdjacentSameDigitsOnlyTwo
+fn has_adjacent_same_digits_only_two
     (
     mut num : u32
     ) -> bool
 {
-    let mut lastDigit = num % 10;
-    let mut concurrentLastDigit = 1;
+    let mut last_digit = num % 10;
+    let mut concurrent_last_digit = 1;
     while num != 0
     {
         num /= 10;
-        if num % 10 == lastDigit
+        if num % 10 == last_digit
         {
-            concurrentLastDigit += 1;
+            concurrent_last_digit += 1;
         }
-        let newLastDigit = num % 10;
-        if newLastDigit != lastDigit
+        let new_last_digit = num % 10;
+        if new_last_digit != last_digit
         {
-            if concurrentLastDigit == 2
+            if concurrent_last_digit == 2
             {
                 return true;
             }
-            concurrentLastDigit = 1;
+            concurrent_last_digit = 1;
         }
-        lastDigit = newLastDigit;
+        last_digit = new_last_digit;
     }
-    return concurrentLastDigit == 2;
+    return concurrent_last_digit == 2;
 }
 
-fn neverDecreasesDigits
+fn never_decreases_digits
     (
     mut num : u32
     ) -> bool
 {
-    let mut lastDigit = num % 10;
+    let mut last_digit = num % 10;
     while num != 0
     {
         num /= 10;
-        if num % 10 > lastDigit
+        if num % 10 > last_digit
         {
             return false;
         }
-        lastDigit = num % 10;
+        last_digit = num % 10;
     }
     return true;
 }
