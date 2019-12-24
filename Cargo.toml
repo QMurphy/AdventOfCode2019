@@ -5,3 +5,5 @@ authors = ["Quinn Murphy <qmurphy64@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+ndarray = "0.13.0" # Day 3 for large array
+bitvec = "0.16.1" # Day 3 for counting bits

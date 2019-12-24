@@ -47,7 +47,7 @@ fn str_to_vec_usize
         {
             Ok( integer ) => ints.push( integer ),
             Err( _ ) => println!( "Unable to parse integer ({})", int_str )
-        }    
+        }
     }
 
     return ints;
@@ -108,7 +108,7 @@ fn op2
     (
     code : &mut Vec<usize>,
     pc   : usize,
-    func : &Fn( usize, usize ) -> usize
+    func : &dyn Fn( usize, usize ) -> usize
     )
 {
     let read_idx1 = code[pc + 1];
