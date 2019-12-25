@@ -2,6 +2,8 @@ mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
+mod cpu;
 
 struct DayInfo
 {
@@ -18,7 +20,7 @@ static DAYS: [Option<DayInfo>; NUM_DAYS] =
     Some( DayInfo { part1_func: day2::part1, part2_func: day2::part2, input_file: "input/2.txt" } ),
     Some( DayInfo { part1_func: day3::part1, part2_func: day3::part2, input_file: "input/3.txt" } ),
     Some( DayInfo { part1_func: day4::part1, part2_func: day4::part2, input_file: "input/4.txt" } ),
-    None,
+    Some( DayInfo { part1_func: day5::both_parts, part2_func: day5::both_parts, input_file: "input/5.txt" } ),
     None,
     None,
     None,
